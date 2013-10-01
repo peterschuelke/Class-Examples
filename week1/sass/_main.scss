@@ -1,0 +1,53 @@
+body {
+	margin: 0;
+}
+
+.container {
+	width: 1024px;
+	margin: auto;
+	border: 2px solid #333;
+	@include border-radius(10px);
+	@include single-box-shadow(#333, 0px, 0px, 5px);
+
+	.header {
+		height: 150px;
+
+		.tagline {
+			font-size: 32px;
+			font-weight: bold;
+			font-family: "Open Sans";
+		}
+	}
+
+	.sidenav {
+		height: $mainHeight;
+		width: $navWidth;
+		float: left;
+
+		a {
+			display: block;
+			//@extend .navigationExtend;
+			@include navigationMixin(#314159);
+		}
+	}
+
+	.content {
+		height: $mainHeight;
+		width: 100% - $navWidth;
+
+		p {
+			margin-bottom: 10px;
+		}
+	}
+
+	.footer {
+
+		padding-right: 10px;
+
+		a {
+			//@extend .navigationExtend;
+			@include navigationMixin(#333, #777);
+		}
+	}
+
+}
