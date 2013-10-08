@@ -15,6 +15,45 @@ body {
 	}
 }
 
-.person {
+.main {
+	@extend .centered;
+	width: 400px;
 	
+	ol {
+		margin: 5px;
+		list-style-type: none;
+		
+	}
+
+	.person {
+
+		padding: 5px;
+		position: relative;
+
+		.name {
+			font-weight: 700;
+			width: 340px;
+		}
+
+		.close {
+			display:block;
+			float:right;
+			height: 14px;
+			width: 40px;
+			font-size: 14px;
+			margin-right: 10px; 
+			color: #ff0000;
+			line-height: 14px;
+			text-decoration: none;
+
+			&:hover {
+				color: #ff2200;
+			}
+		}
+
+		&:nth-child(odd) {
+			background-color: #ddd;
+		}
+
+	}
 }
