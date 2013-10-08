@@ -1,0 +1,20 @@
+
+body {
+	margin: 0;
+}
+
+.header {
+	@extend .centered;
+	width: 400px;
+
+	h1 {
+		margin: 10px 0;
+		font-family: Arial;
+		font-size: 22px;
+		font-weight: 600;
+	}
+}
+
+.person {
+	
+}

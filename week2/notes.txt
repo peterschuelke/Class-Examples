@@ -1,0 +1,22 @@
+Models:
+
+	Person
+	Student
+	change
+	change:prop
+
+	models application state
+
+Collections:
+
+	ClassRoster
+	Sorting
+	Comparator
+	Adding
+	Loading json
+	Sorting _.pluck, _.where, _.filter
+
+Views:
+
+	PersonView
+	Add Person

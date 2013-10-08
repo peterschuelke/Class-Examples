@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>Backbone.js Models</title>
+  <link rel="stylesheet" href="css/screen.css"/>
+</head>
+
+<body>
+
+	<div id="modelapp">
+
+		<header class='header'>
+			<h1>Working with Models</h1>
+		</header>
+
+		<section id="main" class='main'>
+
+		</section>
+
+		<footer class='footer'>
+
+		</footer>
+
+	</div>
+
+	<script src="js/libs/json2.js"></script>
+	<script src="js/libs/jquery.js"></script>
+	<script src="js/libs/underscore.js"></script>
+	<script src="js/libs/backbone.js"></script>
+	<script src="js/main.js"></script>
+
+	<script type="text/template" id="person-template">
+		<div class="view">
+			<input class="toggle" type="checkbox" <%= done ? 'checked="checked"' : '' %> />
+			<label><%- title %></label>
+			<a class="destroy"></a>
+		</div>
+		<input class="edit" type="text" value="<%- title %>" />
+	</script>
+
+	<script type="text/template" id="stats-template">
+		<% if (done) { %>
+			<a id="clear-completed">Clear <%= done %> completed <%= done == 1 ? 'item' : 'items' %></a>
+		<% } %>
+		<div class="todo-count"><b><%= remaining %></b> <%= remaining == 1 ? 'item' : 'items' %> left</div>
+	</script>
+
+</body>
+</html>
