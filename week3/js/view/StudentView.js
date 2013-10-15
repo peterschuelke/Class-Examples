@@ -7,7 +7,7 @@ define(['backbone', 'underscore', '$', 'text!templates/student.html'], function(
 	
 	var StudentView = Backbone.View.extend({
 		template:_.template(template),
-		tagName: "li",  // By default all views have a div associated with them, this changes it to be an <li> instead
+		tagName: "tr",  // By default all views have a div associated with them, this changes it to be an <li> instead
 		className: "person", // CSS class name to add to the <li>
 		// Events hash to create interactivity for our view
 		events: {
@@ -39,7 +39,10 @@ define(['backbone', 'underscore', '$', 'text!templates/student.html'], function(
 		 * it's own remove function when the model is destroyed.  This eans auto updating views.
 		 */
 		onCloseClick: function() {
-			this.model.destroy();
+			var self = this;
+			this.$el.fadeOut(500, function() {
+				self.model.destroy();
+			});
 			return false;  // return false keeps the default click action from continuing for the anchor tag
 		}
 	});

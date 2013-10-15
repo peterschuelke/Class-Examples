@@ -1,16 +1,20 @@
-define(['$', 'underscore', 'view/Home'],
-function($, _) {
+define(['$', 'underscore', 'model/Router', 'controller/RouteManager'],
+function($, _, Router, RouteManager) {
 	
 	function MainView() {
 		var content, $el;
 		$el = $('#contentMain');
-		//$el.append(_.template($("#homeTemplate").html(), {}));
-		var home = new Home();
-		home.render();
-		$el.html(home.$el);
 
+		var routerManager = new RouteManager($el);
+
+		Backbone.history.start();
+		//Router.navigate('home', {trigger: true});
 	}
 
+	/**
+	 * A singleton pattern in javascript - 
+	 * Globaly accessible and only one can every be created
+	 */
 	var singleton = {
 		getInstance : function(){
 			return singleton.instance || (singleton.instance = new MainView());

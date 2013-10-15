@@ -1,10 +1,10 @@
-define(['backbone', '$', 'underscore'],
-function(Backbone, $, _) {	
+define(['backbone', '$', 'underscore', 'model/Student'],
+function(Backbone, $, _, Student) {	
 
 	var ClassList = Backbone.Collection.extend({
 		model: Student,
 		url: 'data/sample.json'
 	});
 
-	return ClassList;
+	return new ClassList();
 });

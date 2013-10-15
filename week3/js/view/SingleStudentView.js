@@ -1,19 +1,19 @@
 /**
- * Home
+ * SingleStudentView
  * Author: Earl Swigert
  */
 
-define(['backbone', 'underscore', '$', 'text!templates/home.html', 'view/BaseView'], 
-	function(Backbone, _, $, template, BaseView) {
+define(['backbone', 'underscore', '$', 'text!templates/singlestudentview.html'], function(Backbone, _, $, template) {
 	
-	Home = BaseView.extend({
+	var SingleStudentView = Backbone.View.extend({
 		template:_.template(template),
 		initialize: function(options) {
 			_.bindAll(this, 'initVars', 'render');
 			this.initVars(options || {});
-
+			
 			this.listenTo(this.model, "change", this.render);
 
+			
 		},
 		initVars: function(options) {
 			if(!this.model) {
@@ -25,11 +25,10 @@ define(['backbone', 'underscore', '$', 'text!templates/home.html', 'view/BaseVie
 		},
 		render: function() {
 			this.$el.html(this.template(this.model.attributes));
-			this.$el.fadeOut(0);
 		}
 	});
 
-	return Home;
+	return SingleStudentView;
 }
 
 );

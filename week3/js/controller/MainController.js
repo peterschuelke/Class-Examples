@@ -1,14 +1,17 @@
-define(['backbone', 'view/MainView'],
-function(Backbone, MainView) {
+define(['backbone', 'view/MainView', 'model/ClassList'],
+function(Backbone, MainView, ClassList) {
 	
 	function MainController() {
 
 		function init () {
 			Backbone.emulateHTTP = true;
 
-			//View
-			MainView.getInstance();
+			ClassList.fetch({success: function() {
+				//View
+				MainView.getInstance();
+			}});
 		}
+
 
 		var api = {
 			init: init
