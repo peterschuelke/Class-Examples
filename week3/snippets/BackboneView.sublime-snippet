@@ -1,0 +1,42 @@
+<snippet>
+	<content><![CDATA[
+/**
+ * ${1:${TM_FILENAME/(.*)[.](.*)/$1/g}}
+ * Author: Earl Swigert
+ */
+
+define(['backbone', 'underscore', '\$', 'text!templates/${1/(.+)/\L\1/g}.html'], function(Backbone, _, \$, template) {
+	
+	$1 = Backbone.View.extend({
+		template:_.template(template),
+		initialize: function(options) {
+			_.bindAll(this, 'initVars', 'render');
+			this.initVars(options || {});
+			
+			this.listenTo(this.model, "change", this.render);
+
+			$0
+		},
+		initVars: function(options) {
+			if(!this.model) {
+				this.model = new Backbone.Model();
+			}
+			if(options.lexicon) {
+				this.model.set(options.lexicon);
+			}
+		},
+		render: function() {
+			this.\$el.html(this.template(this.model.attributes));
+		}
+	});
+
+	return $1;
+}
+
+);
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>backboneview</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<scope>source.js</scope>
+</snippet>
