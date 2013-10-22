@@ -8,7 +8,7 @@ function($, _, Router, RouteManager) {
 		var routerManager = new RouteManager($el);
 
 		Backbone.history.start();
-		//Router.navigate('home', {trigger: true});
+		//Router.navigate('test', {trigger: true});
 	}
 
 	/**

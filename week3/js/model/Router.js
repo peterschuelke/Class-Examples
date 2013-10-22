@@ -5,7 +5,8 @@ function(Backbone, $, _, AppState) {
 		routes: {
 			'' : 'home',
 			'home' : 'home',
-			'students' : 'students'
+			'students' : 'students',
+			'contact' : 'contact'
 		},
 
 		/// Load home state
@@ -16,6 +17,11 @@ function(Backbone, $, _, AppState) {
 		/// Load students state
 		students: function() {
 			AppState.set('currentState', 'students');
+		},
+
+		/// Load contact state
+		contact: function() {
+			AppState.set('currentState', 'contact');
 		}
 	});
 
