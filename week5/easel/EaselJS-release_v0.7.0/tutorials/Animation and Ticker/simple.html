@@ -1,34 +1,87 @@
 <!DOCTYPE html>
 <html>
 <head>
+
+	<style>
+
+		body {
+			margin-left: 200px;
+
+		}
+
+		.cont {
+			margin: auto;
+			width: 960px;
+		}
+
+		canvas, h1 {
+			position: absolute;
+		}
+	</style>
 	<title>EaselJS demo: Simple animation</title>
 	<link href="../_shared/demo.css" rel="stylesheet" type="text/css">
 	<script src="http://code.createjs.com/easeljs-0.6.0.min.js"></script>
 	<script>
 		
-		var stage, circle;
+		var stage, circle, text;
 		function init() {
 			stage = new createjs.Stage("demoCanvas");
+			stage.enableMouseOver();
 			
 			circle = new createjs.Shape();
-			circle.graphics.beginFill("red").drawCircle(0, 0, 40);
-			circle.y = 50;
+			circle.graphics.beginFill("red").drawCircle(40, 40, 40);
+			circle.graphics.beginFill("blue").drawRect(0, 0 , 100, 40);
+			circle.graphics.beginStroke("#333").moveTo(0, 0).lineTo(10, 10).lineTo(50,50);
+			circle.regX = 40;
+			circle.regY = 40;
+			circle.x = circle.y = 50;
+			//circle.rotation = 45;
+
+			circle.addEventListener('click', function() {
+				stage.addChild(newCircle());
+			});
+
+			//circle.y = 50;
 			stage.addChild(circle);
-			
+			stage.update();
 			createjs.Ticker.addEventListener("tick", tick);
 			createjs.Ticker.setFPS(30);
+
+			//text = new createjs.Text("Hello World", "bold 86px Arial", "#ff7700");
+			text = new createjs.DOMElement(document.getElementById('myText'));
+			text.regX = 200;
+			text.x = 200;
+			text.y = 200;
+			//text.text = "Hello world!";
+
+			stage.addChild(text);
+		}
+
+		function newCircle() {
+			var circ = new createjs.Shape();
+			circ.graphics.beginFill("red").drawCircle(40, 40, 40);
+			circ.x = Math.random() * stage.canvas.width;
+			circ.y = Math.random() * stage.canvas.height;
+			return circ;
 		}
 		
 		function tick(event) {
-			circle.x = circle.x + 5;
+			//circle.x = circle.x + 5;
+			//circle.y += 2;
+			//text.rotation += 2;
 			if (circle.x > stage.canvas.width) { circle.x = 0; }
+			if (circle.y > stage.canvas.height) { circle.y = 0; }
 			stage.update(event); // important!!
 		}
 	</script>
 </head>
 <body onLoad="init();">
-	<canvas id="demoCanvas" width="500" height="100">
-		alternate content
-	</canvas>
+	<div class="cont">
+		<canvas id="demoCanvas" style="border: 1px solid black;" width="500" height="400">
+			alternate content
+		</canvas>
+
+		<h1 id="myText">Hello World</h1>
+	</div>
 </body>
 </html>

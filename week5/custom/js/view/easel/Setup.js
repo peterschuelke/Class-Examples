@@ -27,11 +27,11 @@ function(easel) {
 						if(!Ticker._rafActive) {
 							Ticker.setFPS(24);
 						}
-						Ticker.removeListener(checkRAF);
+						Ticker.removeEventListener(checkRAF);
 					}
 				};
 
-				Ticker.addListener(checkRAF);
+				Ticker.addEventListener(checkRAF);
 			}
 		}
 
@@ -48,7 +48,11 @@ function(easel) {
 
 			stage = new Stage($canvas[0]);
 			stage.enableMouseOver();//12);
-			Ticker.addListener(stage);      
+			Ticker.addEventListener('tick', tick);      
+		}
+
+		function tick(event) {
+			stage.update(event);
 		}
 
 	  initStage();
