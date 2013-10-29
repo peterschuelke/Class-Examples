@@ -11,7 +11,6 @@ define(['$', 'model/AppState', 'view/Home'],
 		var currentState = null;
 
 		function loadNewState(m, newState) {
-			console.log('new state');
 			switch(newState) {
 				case 'home' :
 					changeState(home);

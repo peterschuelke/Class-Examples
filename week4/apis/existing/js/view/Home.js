@@ -44,34 +44,34 @@ define(['backbone', 'underscore', '$', 'text!templates/home.html', 'model/AppSta
 			}
 		},
 		getFlickr: function() {
-			var self = this, sr = this.$('#search').val();
-			if(sr === "") {
-				sr = 'puppy';
+			var self = this, searchTerm = this.$('#search').val();
+			if(searchTerm === "") {
+				searchTerm = 'cute puppies';
 			}
-			FlickrCollection.setSearch(sr);
+			FlickrCollection.setSearch(searchTerm);
 			FlickrCollection.fetch({success: function() {
 				self.addImages();
 			}});
 
-			this.$('.term').html("Searching " + sr);
+			this.$('.term').html("Searching " + searchTerm);
 		},
 		getTwitter: function() {
-			var self = this, sr = this.$('#search').val();
-			if(sr === "") {
-				sr = 'puppy';
+			var self = this, searchTerm = this.$('#search').val();
+			if(searchTerm === "") {
+				searchTerm = 'cute puppies';
 			}
-			TwitterCollection.setSearch(sr);
+			TwitterCollection.setSearch(searchTerm);
 			TwitterCollection.fetch({success: function() {
 				console.log(TwitterCollection);
-				//self.addTweets();
+				self.addTweets();
 			}});
 
-			this.$('.term').html("Searching " + sr);
+			this.$('.term').html("Searching " + searchTerm);
 		},
 
 		addImages: function() {
 			var $el = this.$('#content'), img = {};
-
+			console.log(FlickrCollection);
 			FlickrCollection.each(function(model, i) {
 				img.src = model.get('media').m;
 				img.title = model.get('title');
@@ -82,9 +82,10 @@ define(['backbone', 'underscore', '$', 'text!templates/home.html', 'model/AppSta
 			var $el = this.$('#content'), img = {};
 
 			FlickrCollection.each(function(model, i) {
-				img.src = model.get('media').m;
-				img.title = model.get('title');
-				$el.append(_.template(imageTemplate, img));
+				console.log(model);
+				img.tweet = model.get('tweet');
+				img.author = model.get('author');
+				//$el.append(_.template(imageTemplate, img));
 			});
 		}
 	});

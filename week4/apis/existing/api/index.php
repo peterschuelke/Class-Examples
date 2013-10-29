@@ -23,43 +23,21 @@ function getTweets() {
         'consumer_secret' => "5B5jtTGB3NX5hmLKXA9HoTWMsb6A2jewgbpuNxWooyM"
     );
     $url = 'https://api.twitter.com/1.1/search/tweets.json';
-    $requestMethod = 'POST';
+    $requestMethod = 'GET';
     $getfields = "?q=hello";
     $twitter = new TwitterAPIExchange($settings);
-    echo $twitter->buildOauth($url, $requestMethod)
+    /*$resp = $twitter->buildOauth($url, $requestMethod)
              ->setGetfield($getfields)
              ->performRequest();
-}
-
-
-/**
- * Get Database Connection
- * @return PDO The database connection
- */
-
-function getConnection() {
-
-    $dbname="blaineadmin";
-    
-    if(isset($_SERVER['APPLICATION_ENV'])) {
-        $dbhost="localhost";
-        $dbuser="admin";
-        $dbpass="3m3rg3";
-    }
-    else {
-        /*$dbhost="mysql.periscopic.com";
-        $dbuser="periscopic";
-        $dbpass="3m3rg3n0w";*/
-        $dbhost="localhost";
-        $dbuser="periscopic_earl";
-        $dbpass="p3risc0p1c_earl";
-        $dbname="tweets";
+*/
+    $resp = array();
+    for($i = 0; $i < 10; $i++) {
+        $resp []= new stdClass();
+        $resp[$i]->tweet = "I'm a tweet!";
+        $resp[$i]->author = "Author";
     }
     
-    $dbh = new PDO("mysql:host=$dbhost;dbname=$dbname", $dbuser, $dbpass);
-    //mysql_query("SET NAMES 'utf8' COLLATE 'utf8_unicode_ci'");
-    $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING);
-    return $dbh;
+    echo json_encode($resp);
 }
 
 ?>
