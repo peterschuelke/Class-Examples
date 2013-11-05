@@ -1,5 +1,23 @@
+body {
+	margin:0;
+}
+
 .main {
 	width: 1000px;
 	margin:auto;
+}
+
+h1 {
+
+}
+
+.tooltip {
+	position: absolute;
+	background: #fff;
+	padding: 10px;
+	max-width: 300px;
+	border: 1px solid #777;
+	border-radius: 5px;
+	color: #314159;
 }
 

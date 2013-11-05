@@ -10,17 +10,64 @@
 	<script src="js/TweenMax.min.js" type="text/javascript"></script>
 
 	<script type="text/javascript">
-		var stage;
-		$(document).ready(function() {
+		var stage, s, s2, shapes = [];
+		window.onload = function() {
 			var canvas = document.getElementById("mainCanvas");
 			stage = new createjs.Stage(canvas);
 			createjs.Ticker.addEventListener("tick", stage);
-			var s = drawSmiley();
-			s.y = 20;
+			/* = drawSmiley();
+			s2 = drawSmiley();
+			s.y = s2.y = 20;
 			s.x = 20;
+			s2.x = 600;
 			stage.addChild(s);
+			stage.addChild(s2);*/
 
-		});
+			for(var i = 0, len = 10; i < 10; i++) {
+				s = drawSmiley();
+				s.y = 20;
+				s.x = i * 50 + 20;
+				//stage.addChild(s);
+				shapes.push(s);
+			}
+
+			//TweenMax.staggerTo(shapes, 1, {y:200, yoyo:true, repeat:true}, 0.5);
+			//TweenMax.killTweensOf(s, {'y'});
+			//TweenMax.staggerFrom(shapes, 1, {y: 200, delay: 1}, 0.2);
+			//TweenMax.to(s, 1, {x:600, delay: 1, ease:Back.easeOut});
+			//TweenMax.to(s2, 1, {x:20, delay: 1, ease:Back.easeOut});
+			/*TweenMax.to(s, 1, {y:200, delay:1});
+			TweenMax.to(s, 1, {x:300, delay:1});
+			TweenMax.to(s, 1, {rotation:180, delay:1, onComplete:whenDone, onCompleteParams:[0.5]});*/
+
+			//TweenMax.to($("h1"), 1, {left: 20, top: 200, delay: 1});
+			//TweenMax.to($("h1"), 1, {x: 200, y: 200, rotationX:45, delay: 1});
+
+			var t = $("<div/>");
+			t.addClass('tooltip');
+			t.text("This is a tooltip about the header.  Secondary information exists here that I don't need you to see all the time");
+
+			TweenMax.set(t, {autoAlpha:0});
+			$("h1").hover(showTip, hideTip);
+
+			function showTip() {
+				$('.main').append(t);
+				var topTo = $('h1').offset().top + $('h1').height();
+				TweenMax.set(t, {left:$('h1').offset().left, top:topTo - 7, autoAlpha: 0});	
+				TweenMax.to(t, 0.2, {autoAlpha:1});
+				TweenMax.to(t, 0.4, {top: topTo, ease:Ease.easeOut});
+			}
+
+			function hideTip() {
+				var topTo = parseInt(t.css('top'), 10);
+				TweenMax.to(t, 0.3, {autoAlpha: 0, top: topTo - 10, onComplete: t.remove});
+			}
+		};
+
+		function whenDone(alpha) {
+			TweenMax.to(s, 1, {alpha:alpha});
+		}
+
 	</script>
 </head>
 <body>
