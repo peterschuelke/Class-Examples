@@ -7,11 +7,6 @@ require.config({
 		'underscore' : 'libs/underscore',
 		'backbone' : 'libs/backbone',
 
-		/** components & prototyping **/
-		'bootstrap' : 'libs/bootstrap.min',
-		//'datepicker' : 'libs/bootstrap/bootstrap-datepicker',
-		//'slider' : 'libs/bootstrap/bootstrap-slider',
-
 		/** requirejs plugins **/
 		'text' : 'libs/text',
 		'i18n' : 'libs/i18n',
@@ -37,11 +32,6 @@ require.config({
 		},
 		'TweenMax':{
 			exports: 'TweenMax'
-		},
-
-		/** components & prototyping **/
-		'bootstrap' : {
-			deps : ['$']
 		}
 	},
 

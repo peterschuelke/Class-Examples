@@ -8,9 +8,14 @@ define(['backbone', 'underscore', '$', 'text!templates/home.html', 'model/AppSta
 	
 	Home = BaseView.extend({
 		template:_.template(template),
+		events: {
+			'submit #contactForm': 'onSubmit'
+		},
 		initialize: function(options) {
-			_.bindAll(this, 'initVars', 'render');
+			_.bindAll(this, 'initVars', 'render', 'onSubmit');
 			this.initVars(options || {});
+
+			this.model.set('name', "Earl Swigert");
 
 			this.listenTo(this.model, "change", this.render);
 		},
@@ -25,16 +30,30 @@ define(['backbone', 'underscore', '$', 'text!templates/home.html', 'model/AppSta
 		render: function() {
 			this.$el.html(this.template(this.model.attributes));
 			//this.$el.fadeOut(0);
-			var setup = new EaselSetup(this.$('#testCanvas'), 960, 600);
+			/*var setup = new EaselSetup(this.$('#testCanvas'), 960, 600);
 			this.stage = setup.stage;
 			AppState.set('Stage', setup.stage);
-			this.draw();
+			this.draw();*/
 		},
 
 		/*--- Actions ---*/
 
+		onSubmit: function(e) {
+			var form = e.target;
+
+			this.validate(form);
+			return false;
+		},
+
+		validate: function(form) {
+			var name = $(form[0]).val();
+			this.$el.append(name);
+			this.model.set('name', name);
+		},
+
 		draw: function() {
 			var s = this.stage;
+
 		}
 	});
 

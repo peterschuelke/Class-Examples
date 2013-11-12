@@ -3,23 +3,18 @@ function(Backbone, $, _, AppState) {
 
 	var Router = Backbone.Router.extend({
 		routes: {
-			'' : 'home',
-			'search(/:id)' : 'home',
-			'contact' : 'contact'
+			'' : 'intro',
+			'home': 'home',
+			'intro': 'intro',
 		},
 
 		/// Load home state
-		home: function(id) {
-			if(!id) {
-				id = 'flickr';
-			}
-			AppState.set('searchFilter', id);
+		home: function() {
 			AppState.set('currentState', 'home');
 		},
 
-		/// Load students state
-		contact: function() {
-			AppState.set('currentState', 'contact');
+		intro: function() {
+			AppState.set('currentState', 'intro');
 		}
 	});
 

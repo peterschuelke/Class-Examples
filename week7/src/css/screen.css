@@ -66,3 +66,32 @@ a img {
 article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary {
   display: block;
 }
+
+/* line 1, ../sass/partials/_main.scss */
+body {
+  padding-top: 50px;
+  padding-bottom: 20px;
+}
+
+/* line 1, ../sass/partials/_intro.scss */
+.intro {
+  width: 100%;
+}
+/* line 4, ../sass/partials/_intro.scss */
+.intro h1 {
+  font-size: 20px;
+}
+/* line 8, ../sass/partials/_intro.scss */
+.intro .menu {
+  width: 400px;
+  margin: auto;
+  display: block;
+}
+/* line 14, ../sass/partials/_intro.scss */
+.intro .introLink {
+  color: #314159;
+}
+/* line 17, ../sass/partials/_intro.scss */
+.intro .introLink:hover {
+  color: #728bb1;
+}

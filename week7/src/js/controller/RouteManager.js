@@ -1,5 +1,5 @@
-define(['$', 'model/AppState', 'view/Home'], 
-	function($, AppState, Home, StudentsView) {
+define(['$', 'model/AppState', 'view/Home', 'view/IntroScreen'], 
+	function($, AppState, Home, IntroScreen) {
 
 	function RouterManager($cont) {
 
@@ -8,12 +8,18 @@ define(['$', 'model/AppState', 'view/Home'],
 		var home = new Home();
 		home.render();
 
+		var intro = new IntroScreen();
+		intro.render();
+
 		var currentState = null;
 
 		function loadNewState(m, newState) {
 			switch(newState) {
 				case 'home' :
 					changeState(home);
+					break;
+				case 'intro' : 
+					changeState(intro);
 					break;
 			}
 		}
